@@ -5,6 +5,7 @@
   flex-direction: column;
   width: 100%;
   background-color: rgba(139, 30, 63, 1);
+  position: relative;
 }
 
 /* ==================== TITLE ==================== */
@@ -17,20 +18,20 @@
   text-align: center;
 }
 
-.paragraph {
+.title {
   color: whitesmoke;
-  padding-top: 23%;
+  padding-top: 20%;
   font-size: 9vw;
   font-weight: 900;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 /* ==================== CONTENT ==================== */
 .frame-page-content {
-  flex: 1; /* fill remaining space instead of fixed vh */
+  flex: 1; /* fill remaining space */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
 }
 
 .content-frame {
@@ -38,11 +39,42 @@
   justify-content: center;
   align-items: center;
   width: min(90%, 500px); /* responsive width */
-  aspect-ratio: 1 / 1; /* keeps square shape */
+  aspect-ratio: 1 / 1; /* keep square shape */
 }
 
+/* ---------------- LETTER ---------------- */        
+.letter {
+  padding-top: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+  padding-bottom: 8rem;
+}
+
+/* ---------------- POETS ---------------- */
+.poet-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
+  height: 80%;
+  padding-bottom: 5rem;
+}
+
+.poet1, .poet2, .poet3 {
+  color: whitesmoke;
+  font-size: 7vw;
+  font-weight: 900;
+  opacity: 0; 
+  transform: translateY(20px); 
+  text-shadow: 4px 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------- BOX AND FLOWER ---------------- */
 .box {
-  margin-top: 30%;
+  padding-top: 25%;
+  padding-bottom: 6rem;
   width: 80%;
   height: 80%;
   object-fit: contain;
@@ -52,17 +84,14 @@
 .flower {
   width: 100%;
   height: 160%;
+  padding-bottom: 4rem;
 }
 
-.fade-out {
-  opacity: 0;
-  transform: translateY(40px) scale(1);
-}
+/* ==================== ANIMATIONS ==================== */
 
+/* ---------------- Fade In ---------------- */
 .fade-in {
-  opacity: 0;
-  transform: translateY(40px) scale(1);
-  animation: popIn 1.5s forwards ease;
+  animation: popIn 4s forwards ease;
 }
 
 @keyframes popIn {
@@ -80,18 +109,52 @@
   }
 }
 
-/* ==================== CREDIT ==================== */
-.frame-page-credit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 10vh;
-  padding: 1rem;
-  text-align: center;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+/* ---------------- Fade Out ---------------- */
+.fade-out {
+  animation: popOut 4s forwards ease-in-out; /* match this duration in JS */
 }
 
+@keyframes popOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px); /* smooth glide down */
+  }
+}
+
+/* ==================== CREDIT ==================== */
+.frame-page-credit {
+  position: absolute;     
+  bottom: 0;             
+  left: 50%;           
+  transform: translateX(-50%); 
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 2rem;     
+  min-height: 10vh;
+  text-align: center;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  pointer-events: none;
+  color: whitesmoke;  
+}
+
+.credit {
+  color: white;
+  padding-right: 1.2rem;  
+  opacity: 0.4;       /* 40% opacity */
+  font-size: 18px;     /* example size */
+  font-style: italic;
+}
+
+.creditsymbol {
+  padding-left: 1.2rem;
+  width: 10%;
+  height: 10%;
+}
 /* ==================== MOBILE TWEAK ==================== */
 @media (max-width: 600px) {
   .frame-page-title {
