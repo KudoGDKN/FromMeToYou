@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./style/webpage.css";
-
 import box from "../assets/1.png";
 import flower from "../assets/flower.png";
 import letter from "../assets/letter/public letter.png";
@@ -38,7 +37,7 @@ function Valentine() {
       audio.play().catch(() => {});
     }
 
-    setShowCredit(true);
+    setShowCredit(true);``
     setShowCreditSymbol(true);
     setFadeCredit(true);
     setFadeCreditSymbol(true);
@@ -90,7 +89,6 @@ function Valentine() {
 
   return (
     <div className="web-page">
-      {/* ✅ FIXED audio import */}
       <audio id="bgm" src={bgm} loop />
 
       <div className="frame-page-title">
