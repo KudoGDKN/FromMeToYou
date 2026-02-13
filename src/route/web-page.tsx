@@ -34,7 +34,7 @@ function Weppage() {
     return (
         <div className="web-page">
             {/* Audio element (hidden, no controls) */}
-            <audio id="bgm" src="src/assets/violet letter.MP3" loop />
+            <audio id="bgm" src="src/assets/violet-letter.MP3" loop />
 
             <div className="frame-page-title">
                 {showParagraph && (

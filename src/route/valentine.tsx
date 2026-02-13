@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./style/webpage.css";
+
 import box from "../assets/1.png";
 import flower from "../assets/flower.png";
 import letter from "../assets/letter/public letter.png";
-import creditsymbol from "../assets/music symbol.png"
+import creditsymbol from "../assets/music symbol.png";
+import bgm from "../assets/violet-letter.mp3";
 
 function Valentine() {
   const [showParagraph, setShowParagraph] = useState(false);
@@ -33,7 +35,7 @@ function Valentine() {
     if (audio) {
       audio.volume = 1;
       audio.currentTime = 0;
-      audio.play();
+      audio.play().catch(() => {});
     }
 
     setShowCredit(true);
@@ -57,28 +59,26 @@ function Valentine() {
           setFadePoet3(true);
 
           setTimeout(() => {
-            setFadePoet1(false); // start Poet1 fade-out
-            setTimeout(() => setShowPoet1(false), 4000); // hide after 2s
-          
+            setFadePoet1(false);
             setFadePoet2(false);
-            setTimeout(() => setShowPoet2(false), 4000);
-          
             setFadePoet3(false);
-            setTimeout(() => setShowPoet3(false), 4000);
 
             setTimeout(() => {
+              setShowPoet1(false);
+              setShowPoet2(false);
+              setShowPoet3(false);
               setPoetCont(false);
               setShowBox(true);
-            }, 4500); // wait display time
-          }, 4500); // wait display time
-        }, 4500); // display time for Poet2
-      }, 4500); // display time for Poet1
-    }, 4000); // after letter fade
+            }, 4000);
+          }, 4500);
+        }, 4500);
+      }, 4500);
+    }, 4000);
   };
 
   const handleBoxClick = () => {
     setFadeBox(true);
-    setShowCredit(true);
+
     setTimeout(() => {
       setShowBox(false);
       setFadeBox(false);
@@ -90,7 +90,8 @@ function Valentine() {
 
   return (
     <div className="web-page">
-      <audio id="bgm" src="src/assets/violet-letter.MP3" loop />
+      {/* ✅ FIXED audio import */}
+      <audio id="bgm" src={bgm} loop />
 
       <div className="frame-page-title">
         {showParagraph && (
@@ -154,17 +155,16 @@ function Valentine() {
         {showCreditSymbol && (
           <img
             src={creditsymbol}
-            className={`creditsymbol ${fadeCreditSymbol? "fade-in" : ""}`}
+            className={`creditsymbol ${fadeCreditSymbol ? "fade-in" : ""}`}
             alt="creditsymbol"
           />
         )}
         {showCredit && (
-          <div className={`credit ${fadeCredit ? "fade-in": " "}`}>
-                  Violet Letter - Evan Call
+          <div className={`credit ${fadeCredit ? "fade-in" : ""}`}>
+            Violet Letter — Evan Call
           </div>
         )}
       </div>
-        
     </div>
   );
 }
